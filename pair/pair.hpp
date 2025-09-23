@@ -10,6 +10,7 @@ public:
     pair();
     pair(const T1& x, const T2& y);
     pair(const pair<T1, T2>& obj);
+    pair<T1, T2> operator=(pair<T1, T2> other);
 private:
 };
 
@@ -27,3 +28,11 @@ pair<T1, T2>::pair(const T1& x, const T2& y)
 template <typename T1, typename T2>
 inline pair<T1, T2>::pair(const pair<T1, T2>& obj)
      : first(obj.first), second(obj.second) {}
+
+template <typename T1, typename T2>
+inline pair<T1, T2> pair<T1, T2>::operator=(pair<T1, T2> other) {
+    first = other.first;
+    second = other.second;
+
+    return *this;
+}
