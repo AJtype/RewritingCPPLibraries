@@ -12,10 +12,10 @@ public:
     pair(const T1& x, const T2& y);
     pair(const pair&) = default;
     pair(pair&&) = default; // TODO: untested
-    pair<T1, T2>& operator=(const pair<T1, T2>& other);
+    pair<T1, T2>& operator=(const pair& other);
 
     // funcs
-    void swap(pair<T1, T2>& other);
+    void swap(pair& other);
 private:
 };
 
@@ -30,7 +30,7 @@ pair<T1, T2>::pair(const T1& x, const T2& y)
     : first(x), second(y) {}
 
 template <typename T1, typename T2>
-inline pair<T1, T2>& pair<T1, T2>::operator=(const pair<T1, T2>& other) {
+inline pair<T1, T2>& pair<T1, T2>::operator=(const pair& other) {
     first = other.first;
     second = other.second;
 
@@ -38,7 +38,7 @@ inline pair<T1, T2>& pair<T1, T2>::operator=(const pair<T1, T2>& other) {
 }
 
 template <typename T1, typename T2>
-inline void pair<T1, T2>::swap(pair<T1, T2>& other)
+inline void pair<T1, T2>::swap(pair& other)
 {
     std::swap(first, other.first); // TODO: replace with my swap
     std::swap(second, other.second);
