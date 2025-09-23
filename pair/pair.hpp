@@ -10,8 +10,9 @@ public:
     // constructor declarations
     pair();
     pair(const T1& x, const T2& y);
-    pair(const pair<T1, T2>& obj);
-    pair<T1, T2> operator=(const pair<T1, T2>& other);
+    pair(const pair&) = default;
+    pair(pair&&) = default; // TODO: untested
+    pair<T1, T2>& operator=(const pair<T1, T2>& other);
 
     // funcs
     void swap(pair<T1, T2>& other);
@@ -28,13 +29,8 @@ template<typename T1, typename T2> // TODO: move to c++ file
 pair<T1, T2>::pair(const T1& x, const T2& y)
     : first(x), second(y) {}
 
-// Copy constructor
 template <typename T1, typename T2>
-inline pair<T1, T2>::pair(const pair<T1, T2>& obj)
-     : first(obj.first), second(obj.second) {}
-
-template <typename T1, typename T2>
-inline pair<T1, T2> pair<T1, T2>::operator=(const pair<T1, T2>& other) {
+inline pair<T1, T2>& pair<T1, T2>::operator=(const pair<T1, T2>& other) {
     first = other.first;
     second = other.second;
 
