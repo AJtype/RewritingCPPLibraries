@@ -11,10 +11,15 @@ int main() {
 
     std::cout << "withNumbers = " << withNumbers.first << ", " << withNumbers.second << std::endl;
     std::cout << "withoutVars = " << withoutVars.first << ", " << withoutVars.second << std::endl;
-    std::cout << "copy = " << copy.first << ", " << copy.second << std::endl;
+    std::cout << "copy of withoutVars = " << copy.first << ", " << copy.second << std::endl;
 
     withoutVars = withNumbers;
-    std::cout << "withoutVars = withNumbers = " << withoutVars.first << ", " << withoutVars.second << std::endl;
+    std::cout << "\nwithoutVars = withNumbers = " << withoutVars.first << ", " << withoutVars.second << std::endl;
+    
+    withoutVars.swap(copy);
+    std::cout << "\nswapped withoutVars and copy" << std::endl;
+    std::cout << "copy = " << copy.first << ", " << copy.second << std::endl;
+    std::cout << "withoutVars = " << withoutVars.first << ", " << withoutVars.second << std::endl;
 
     return 0;
 }
