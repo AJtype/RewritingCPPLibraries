@@ -1,5 +1,6 @@
 #include "pair.hpp"
 #include <iostream>
+#include <string>
 
 int main() {
     pair<int, int> withNumbers(1, 2);
@@ -20,6 +21,11 @@ int main() {
     std::cout << "\nswapped withoutVars and copy" << std::endl;
     std::cout << "copy = " << copy.first << ", " << copy.second << std::endl;
     std::cout << "withoutVars = " << withoutVars.first << ", " << withoutVars.second << std::endl;
+
+    pair<int, std::string> original(1, "Hello");
+    pair<int, std::string> movedPair(std::move(original));
+    std::cout << "\nmovedPair = " << movedPair.first << ", " << movedPair.second << std::endl;
+    std::cout << "original after move = " << original.first << ", " << original.second << std::endl;
 
     return 0;
 }
