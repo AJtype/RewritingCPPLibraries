@@ -4,9 +4,9 @@
 template<typename T>
 class vector { // TODO: add type specific vector for bool to optimize space efficiency
 private:
-    size_t typeSize;
+    T* arr;    
     size_t arrSize;
-    T* arr;
+    size_t typeSize;
 
 public:
     // Constructors
@@ -22,11 +22,11 @@ public:
 };
 
 // template <typename T>
-// inline vector<T>::vector() : arr(nullptr), arrSize(0) {}
+// inline vector<T>::vector() : arr(nullptr), arrSize(0), typeSize(sizeof(T)) {}
 
 template <typename T>
 inline vector<T>::vector(const size_t &count)
-    : arr(new T[count]) {}
+    : arr(new T[count]), arrSize(count), typeSize(sizeof(T)) {}
 
 template <typename T>
 inline vector<T>::vector(size_t count, const T &value)
@@ -40,7 +40,7 @@ inline vector<T>::vector(size_t count, const T &value)
 
 // template <typename T>
 // template <typename... Args>
-// inline vector<T>::vector(Args &&...args) {}
+// inline vector<T>::vector(Args &&...args) : arr(nullptr), arrSize(0), typeSize(sizeof(T)) {}
 
 template <typename T>
 inline T& vector<T>::operator[](const int pos) {
