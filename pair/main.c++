@@ -7,9 +7,11 @@ int main() {
 
     withoutVars.first = 3;
     withoutVars.second = 'c';
+    pair<int, char> copy(withoutVars);
 
-    std::cout << withNumbers.first << ", " << withNumbers.second << std::endl;
-    std::cout << withoutVars.first << ", " << withoutVars.second << std::endl;
+    std::cout << "withNumbers = " << withNumbers.first << ", " << withNumbers.second << std::endl;
+    std::cout << "withoutVars = " << withoutVars.first << ", " << withoutVars.second << std::endl;
+    std::cout << "copy = " << copy.first << ", " << copy.second << std::endl;
 
     return 0;
 }
