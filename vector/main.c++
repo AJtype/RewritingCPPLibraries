@@ -1,4 +1,3 @@
-#include <iostream>
 #include "vector.hpp"
 
 int main() {
@@ -8,13 +7,8 @@ int main() {
     {
         vec[i] = i;
     }
-
-    std::cout << "vec = {";
-    for (size_t i = 0; i < 5; i++)
-    {
-        std::cout << vec[i] << ", ";
-    } std::cout << "}" << std::endl;
     
+    printVector(vec);
 
     return 0;
 }
