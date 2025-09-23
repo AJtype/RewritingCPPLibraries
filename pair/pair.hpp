@@ -1,11 +1,19 @@
+#pragma once
+
 template<typename T1, typename T2>
 struct pair{
 public:
     T1 first;
     T2 second;
 
-    pair();
+    // constructor declarations
     pair(const T1& x, const T2& y);
 private:
 };
 
+// funcs
+
+// constructor definition (must also be templated!) 
+template<typename T1, typename T2> // TODO: move to c++ file
+pair<T1, T2>::pair(const T1& x, const T2& y)
+    : first(x), second(y) {}

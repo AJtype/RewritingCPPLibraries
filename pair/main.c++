@@ -2,7 +2,9 @@
 #include <iostream>
 
 int main() {
-    std::cout << "test" << std::endl;
+    pair<int, int> withNumbers(1, 2);
+
+    std::cout << withNumbers.first << ", " << withNumbers.second << std::endl;
 
     return 0;
 }
