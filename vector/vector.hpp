@@ -12,7 +12,7 @@ public:
     // Constructors
     // vector(); // default constructor
     explicit vector(const size_t& count);  // count constructor
-    // vector(size_t count, const T& value);  // count-value constructor
+    vector(size_t count, const T& value);  // count-value constructor
     // vector(const vector& other) = default; // copy constructor
     // vector(vector&& other) = default; // move constructor
     // template<typename ... Args> vector(Args&& ... args); // uniform constructor
@@ -28,15 +28,15 @@ template <typename T>
 inline vector<T>::vector(const size_t &count)
     : arr(new T[count]) {}
 
-// template <typename T>
-// inline vector<T>::vector(size_t count, const T &value)
-//     : arr(new T[count]), arrSize(count), typeSize(sizeof(T))
-// {
-//     for (size_t i = 0; i < count; i++)
-//     {
-//         arr[i] = value;
-//     }
-// }
+template <typename T>
+inline vector<T>::vector(size_t count, const T &value)
+    : arr(new T[count]), arrSize(count), typeSize(sizeof(T))
+{
+    for (size_t i = 0; i < count; i++)
+    {
+        arr[i] = value;
+    }
+}
 
 // template <typename T>
 // template <typename... Args>

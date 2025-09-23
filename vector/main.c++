@@ -1,14 +1,20 @@
 #include "vector.hpp"
 
 int main() {
-    vector<int> vec(5);
+    // empty vec
+    vector<int> emptyVec(5);
 
     for (size_t i = 0; i < 5; i++)
     {
-        vec[i] = i;
+        emptyVec[i] = i;
     }
     
-    printVector(vec);
+    printVector(emptyVec);
+    
+    // calloced vector
+    vector<int> all2Vec(5, 2);
+    
+    printVector(all2Vec);
 
     return 0;
 }
