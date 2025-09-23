@@ -7,13 +7,18 @@ public:
     T2 second;
 
     // constructor declarations
+    pair();
     pair(const T1& x, const T2& y);
 private:
 };
 
 // funcs
 
-// constructor definition (must also be templated!) 
+// Default constructor
+template <typename T1, typename T2>
+inline pair<T1, T2>::pair() : first(T1()), second(T1()) {}
+
+// Two-argument constructor
 template<typename T1, typename T2> // TODO: move to c++ file
 pair<T1, T2>::pair(const T1& x, const T2& y)
     : first(x), second(y) {}
