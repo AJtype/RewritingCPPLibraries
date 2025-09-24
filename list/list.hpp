@@ -2,7 +2,19 @@
 #include <utility>
 
 template<typename T>
-struct list{ // doubly linked list
+class list{ // doubly linked list
+private:
+    struct node
+    {
+        T value;
+        T* next;
+        T* prev;
+    };
+    
+    node* head;
+    node* end;
+    unsigned int size;
+
 public:
     // constructor declarations
     list();
@@ -12,7 +24,6 @@ public:
 
     // funcs
     void swap(list& other) noexcept;
-private:
 };
 
 // funcs
