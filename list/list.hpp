@@ -42,9 +42,8 @@ inline list<T>::list() :
 
 template <typename T>
 inline list<T> &list<T>::operator=(const list &other) { // TODO
-    for (unsigned int i = 0; i < other.size(); i++)
-    {
-        /* code */
+    for (unsigned int i = 0; i < other.size(); i++) {
+        emplace_back(other[i]);
     }
     
     return this;
