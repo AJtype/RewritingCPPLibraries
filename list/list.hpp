@@ -27,3 +27,7 @@ public:
 };
 
 // funcs
+
+template <typename T>
+inline list<T>::list() :
+    head(nullptr), end(nullptr), size(0) {}
