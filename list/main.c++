@@ -20,5 +20,7 @@ int main() {
         std::cout << copiedList[i] << ", ";
     } std::cout << "}" << std::endl;
 
+    std::cout << "copiedList first element = " << copiedList.front() << "\tlast element = " << copiedList.back() << std::endl;
+
     return 0;
 }

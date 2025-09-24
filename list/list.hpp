@@ -23,14 +23,18 @@ public:
     ~list() = default; // TODO: remove all the allocated memory
     list<T>& operator=(const list& other);
 
-    // getter setters
+    // getter
     unsigned int size();
+    T& front();
+    T& back();
+
+    // setters
     void emplace_front(const T& value); // TODO: replace with Args&&... args
     void emplace_back(const T& value); // TODO: replace with Args&&... args
-    T& operator[](const int& pos); // TODO: untested
+    T& operator[](const int& pos);
 
     // funcs
-    bool empty(); // TODO: unfinished
+    bool empty();
     void swap(list& other) noexcept;
 };
 
@@ -41,7 +45,7 @@ inline list<T>::list() :
     head(nullptr), end(nullptr), length(0) {}
 
 template <typename T>
-inline list<T> &list<T>::operator=(const list &other) { // TODO
+inline list<T> &list<T>::operator=(const list &other) {
     for (unsigned int i = 0; i < other.size(); i++) {
         emplace_back(other[i]);
     }
@@ -53,6 +57,18 @@ template <typename T>
 inline unsigned int list<T>::size()
 {
     return length;
+}
+
+template <typename T>
+inline T& list<T>::front()
+{
+    return head->value;
+}
+
+template <typename T>
+inline T& list<T>::back()
+{
+    return end->value;
 }
 
 template <typename T>
