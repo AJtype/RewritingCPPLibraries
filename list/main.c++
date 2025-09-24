@@ -4,8 +4,9 @@
 int main() {
     list<int> l;
 
+    l.emplace_front(2);
     l.emplace_back(1);
-    l.emplace_back(4);
+    l.emplace_front(4);
     l.emplace_back(3);
 
     std::cout << "list = {";

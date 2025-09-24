@@ -1,5 +1,5 @@
 #pragma once
-#include <utility>
+#include <iostream>
 
 template<typename T>
 class list{ // doubly linked list
@@ -25,6 +25,7 @@ public:
 
     // getter setters
     unsigned int size();
+    void emplace_front(const T& value); // TODO: replace with Args&&... args
     void emplace_back(const T& value); // TODO: replace with Args&&... args
     T& operator[](const int& pos); // TODO: untested
 
@@ -40,9 +41,34 @@ inline list<T>::list() :
     head(nullptr), end(nullptr), length(0) {}
 
 template <typename T>
+inline list<T> &list<T>::operator=(const list &other) { // TODO
+    for (unsigned int i = 0; i < other.size(); i++)
+    {
+        /* code */
+    }
+    
+    return this;
+}
+
+template <typename T>
 inline unsigned int list<T>::size()
 {
     return length;
+}
+
+template <typename T>
+inline void list<T>::emplace_front(const T &value)
+{    
+    node* temp = head;
+
+    head = new node();
+    head->value = value;
+    head->next = temp;
+    head->prev = nullptr;
+
+    if (empty())
+        end = head;
+    length++;
 }
 
 template <typename T>
