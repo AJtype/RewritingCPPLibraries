@@ -27,15 +27,24 @@ public:
     unsigned int size();
     T& front();
     T& back();
+    T pop_back();
+    T pop_front();
+    T erase(unsigned int pos); // TODO: return iterator
 
     // setters
     void emplace_front(const T& value); // TODO: replace with Args&&... args
     void emplace_back(const T& value); // TODO: replace with Args&&... args
+    // void insert() // TODO
     T& operator[](const int& pos);
 
     // funcs
     bool empty();
     void swap(list& other) noexcept;
+    void clear();
+    void merge();
+    void reverse();
+    void unique();
+    void sort();
 };
 
 // constructors
