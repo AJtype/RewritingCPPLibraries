@@ -3,7 +3,7 @@
 
 template<typename T>
 class list{ // doubly linked list
-public:
+private:
     struct node
     {
         T value;
@@ -13,7 +13,7 @@ public:
     
     node* head;
     node* end;
-    unsigned int size;
+    unsigned int length;
 
 public:
     // constructor declarations
@@ -24,6 +24,7 @@ public:
     list<T>& operator=(const list& other);
 
     // getter setters
+    unsigned int size();
     void emplace_back(const T& value); // TODO: replace with Args&&... args
     T& operator[](const int& pos); // TODO: untested
 
@@ -36,26 +37,31 @@ public:
 // default constructor
 template <typename T>
 inline list<T>::list() :
-    head(nullptr), end(nullptr), size(0) {}
+    head(nullptr), end(nullptr), length(0) {}
+
+template <typename T>
+inline unsigned int list<T>::size()
+{
+    return length;
+}
 
 template <typename T>
 inline void list<T>::emplace_back(const T &value)
 {
     if (empty()) {
-        // std::cout << "emplace back empty" << std::endl;
         head = new node();
         head->value = value;
         head->next = nullptr;
         head->prev = nullptr;
         end = head;
     } else {
-        // std::cout << "emplace back not empty" << std::endl;
-        end->next = new node();
-        head->value = value;
-        head->next = end;
-        head->prev = nullptr;
+        node* temp = new node();
+        temp->value = value;
+        temp->next = end;
+        temp->prev = nullptr;
+        end->next = temp;
         end = end->next;
-    } size++;
+    } length++;
 }
 
 template <typename T>
@@ -73,5 +79,5 @@ inline T &list<T>::operator[](const int &pos)
 template <typename T>
 inline bool list<T>::empty()
 {
-    return true;
+    return length == 0;
 }
