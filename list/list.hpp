@@ -181,3 +181,29 @@ inline void list<T>::clear() {
         pop_front();
     }
 }
+
+template <typename T>
+inline void list<T>::unique() {
+    node* itr = head;
+
+    for (unsigned int i = 0; i < length-1; i++) {
+        itr = itr->next;
+
+        if (itr->value == itr->prev->value) {
+            std::cout << itr->prev->value << " == " << itr->value << std::endl;
+
+            itr->prev->next = itr->next;
+            if (itr->next) {
+                itr->next->prev = itr->prev;
+            } else {
+                end = itr->prev;
+            }
+            
+            node* temp = itr->next;
+            delete itr;
+            itr = temp->prev;
+        } else {
+            std::cout << itr->prev->value << " != " << itr->value << std::endl;
+        }
+    }
+}
