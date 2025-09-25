@@ -86,12 +86,16 @@ inline T& list<T>::back()
 }
 
 template <typename T>
-inline T list<T>::pop_back() { // TODO: add test for the final pop
+inline T list<T>::pop_back() {
     node* popped = end;
     T val = popped->value;
 
     end = popped->prev;
-    popped->prev = nullptr;
+    if (end) {
+        end->next = nullptr;
+    } else { // empty list
+        head = nullptr;
+    }
 
     delete popped;
     length--;
@@ -101,11 +105,18 @@ inline T list<T>::pop_back() { // TODO: add test for the final pop
 
 template <typename T>
 inline T list<T>::pop_front() {
+    if (empty())
+        throw std::out_of_range("pop_front() called on an empty list");
+    
     node* popped = head;
     T val = popped->value;
 
     head = popped->next;
-    head->prev = nullptr;
+    if (head) {
+        head->prev = nullptr;
+    } else { // empty list
+        end = nullptr;
+    }
 
     delete popped;
     length--;
@@ -141,7 +152,7 @@ inline void list<T>::emplace_back(const T& value) {
     } else {
         node* temp = new node();
         temp->value = value;
-        temp->next = end;
+        temp->next = nullptr;
         temp->prev = end;
         end->next = temp;
         end = end->next;
