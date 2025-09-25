@@ -21,7 +21,7 @@ public:
     list(const list&) = default; // TODO: untested
     list(list&&) = default; // TODO: untested
     ~list() = default; // TODO: remove all the allocated memory
-    list<T>& operator=(const list& other);
+    list<T>& operator=(const list& other); // TODO: bug, if you change the original list the copied list fucks up
 
     // getter
     unsigned int size();
@@ -81,13 +81,27 @@ inline T& list<T>::back()
 }
 
 template <typename T>
-inline T list<T>::pop_back()
-{
+inline T list<T>::pop_back() { // TODO: add test for the final pop
     node* popped = end;
     T val = popped->value;
 
     end = popped->prev;
     popped->prev = nullptr;
+
+    delete popped;
+    length--;
+
+    return val;
+}
+
+template <typename T>
+inline T list<T>::pop_front()
+{
+    node* popped = head;
+    T val = popped->value;
+
+    head = popped->next;
+    head->prev = nullptr;
 
     delete popped;
     length--;

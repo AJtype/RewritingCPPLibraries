@@ -16,7 +16,14 @@ int main() {
 
     std::cout << "list first element = " << l.front() << "\tlast element = " << l.back() << std::endl;
 
-    std::cout << "list last element " << l.pop_back() << " has been popped, now the new back is " << l.back() << std::endl;
+    std::cout << "list's last element " << l.pop_back() << " has been popped, now the new back is " << l.back() << std::endl;
+
+    std::cout << "list = {";
+    for (size_t i = 0; i < l.size(); i++) {
+        std::cout << l[i] << ", ";
+    } std::cout << "}" << std::endl;
+
+    std::cout << "list's first element " << l.pop_front() << " has been popped, now the new head is " << l.front() << std::endl;
 
     std::cout << "list = {";
     for (size_t i = 0; i < l.size(); i++) {
