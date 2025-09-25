@@ -81,17 +81,35 @@ inline T& list<T>::back()
 }
 
 template <typename T>
+inline T list<T>::pop_back()
+{
+    node* popped = end;
+    T val = popped->value;
+
+    end = popped->prev;
+    popped->prev = nullptr;
+
+    delete popped;
+    length--;
+
+    return val;
+}
+
+template <typename T>
 inline void list<T>::emplace_front(const T &value)
 {    
-    node* temp = head;
+    node* prevHead = head;
 
+    // add a new node at the beginning of the list
     head = new node();
     head->value = value;
-    head->next = temp;
+    head->next = prevHead; // point to the previous start
     head->prev = nullptr;
 
     if (empty())
         end = head;
+    else
+        prevHead->prev = head;
     length++;
 }
 
@@ -108,7 +126,7 @@ inline void list<T>::emplace_back(const T &value)
         node* temp = new node();
         temp->value = value;
         temp->next = end;
-        temp->prev = nullptr;
+        temp->prev = end;
         end->next = temp;
         end = end->next;
     } length++;

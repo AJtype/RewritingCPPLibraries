@@ -14,13 +14,20 @@ int main() {
         std::cout << l[i] << ", ";
     } std::cout << "}" << std::endl;
 
-    list<int> copiedList = l;
-    std::cout << "copiedList = {";
+    std::cout << "list first element = " << l.front() << "\tlast element = " << l.back() << std::endl;
+
+    std::cout << "list last element " << l.pop_back() << " has been popped, now the new back is " << l.back() << std::endl;
+
+    std::cout << "list = {";
     for (size_t i = 0; i < l.size(); i++) {
-        std::cout << copiedList[i] << ", ";
+        std::cout << l[i] << ", ";
     } std::cout << "}" << std::endl;
 
-    std::cout << "copiedList first element = " << copiedList.front() << "\tlast element = " << copiedList.back() << std::endl;
+    list<int> copiedList = l;
+    std::cout << "copiedList = {";
+    for (size_t i = 0; i < copiedList.size(); i++) {
+        std::cout << copiedList[i] << ", ";
+    } std::cout << "}" << std::endl;
 
     return 0;
 }
