@@ -55,6 +55,12 @@ inline list<T>::list() :
 
 template <typename T>
 inline list<T> &list<T>::operator=(const list &other) {
+    if (!empty())
+    {
+        clear();
+    }
+    
+
     for (unsigned int i = 0; i < other.size(); i++) {
         emplace_back(other[i]);
     }
@@ -95,8 +101,7 @@ inline T list<T>::pop_back() { // TODO: add test for the final pop
 }
 
 template <typename T>
-inline T list<T>::pop_front()
-{
+inline T list<T>::pop_front() {
     node* popped = head;
     T val = popped->value;
 
@@ -110,8 +115,7 @@ inline T list<T>::pop_front()
 }
 
 template <typename T>
-inline void list<T>::emplace_front(const T &value)
-{    
+inline void list<T>::emplace_front(const T &value) {
     node* prevHead = head;
 
     // add a new node at the beginning of the list
@@ -128,8 +132,7 @@ inline void list<T>::emplace_front(const T &value)
 }
 
 template <typename T>
-inline void list<T>::emplace_back(const T &value)
-{
+inline void list<T>::emplace_back(const T& value) {
     if (empty()) {
         head = new node();
         head->value = value;
@@ -147,8 +150,7 @@ inline void list<T>::emplace_back(const T &value)
 }
 
 template <typename T>
-inline T &list<T>::operator[](const int &pos)
-{
+inline T& list<T>::operator[](const int &pos) {
     node* curr = head;
     
     for (unsigned int i = 0; i < pos; i++) {
@@ -159,7 +161,13 @@ inline T &list<T>::operator[](const int &pos)
 }
 
 template <typename T>
-inline bool list<T>::empty()
-{
+inline bool list<T>::empty() {
     return length == 0;
+}
+
+template <typename T>
+inline void list<T>::clear() {    
+    while (length != 0) {
+        pop_front();
+    }
 }
