@@ -189,10 +189,10 @@ inline void list<T>::unique() {
     for (unsigned int i = 0; i < length-1; i++) {
         itr = itr->next;
 
-        if (itr->value == itr->prev->value) {
+        if (itr->value == itr->prev->value) { // this element's value is the same as the previous'es
             std::cout << itr->prev->value << " == " << itr->value << std::endl;
 
-            itr->prev->next = itr->next;
+            itr->prev->next = itr->next; // remove the element from the chain
             if (itr->next) {
                 itr->next->prev = itr->prev;
             } else {
@@ -200,7 +200,7 @@ inline void list<T>::unique() {
             }
             
             node* temp = itr->next;
-            delete itr;
+            delete itr; length--; i--;
             itr = temp->prev;
         } else {
             std::cout << itr->prev->value << " != " << itr->value << std::endl;
