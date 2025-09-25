@@ -184,26 +184,28 @@ inline void list<T>::clear() {
 
 template <typename T>
 inline void list<T>::unique() {
-    node* itr = head;
+    if (length < 2) // too short to have duplicates
+        return;
 
-    for (unsigned int i = 0; i < length-1; i++) {
-        itr = itr->next;
+    node* itr = head->next;
 
-        if (itr->value == itr->prev->value) { // this element's value is the same as the previous'es
-            std::cout << itr->prev->value << " == " << itr->value << std::endl;
+    while (itr) {
+        if (itr->value == itr->prev->value) {
+            node* toDelete = itr;
 
-            itr->prev->next = itr->next; // remove the element from the chain
+            itr->prev->next = itr->next;
+
             if (itr->next) {
                 itr->next->prev = itr->prev;
             } else {
                 end = itr->prev;
             }
-            
-            node* temp = itr->next;
-            delete itr; length--; i--;
-            itr = temp->prev;
+
+            itr = itr->next;
+            delete toDelete;
+            length--;
         } else {
-            std::cout << itr->prev->value << " != " << itr->value << std::endl;
+            itr = itr->next;
         }
     }
 }
