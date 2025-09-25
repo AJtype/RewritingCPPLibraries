@@ -1,6 +1,8 @@
 #include "list.hpp"
 #include <iostream>
 
+void check_operatorEqual();
+
 int main() {
     list<int> l;
 
@@ -51,11 +53,28 @@ int main() {
         std::cout << l[i] << ", ";
     } std::cout << "}" << std::endl;
 
+    // check_operatorEqual();
+
+    return 0;
+}
+
+void check_operatorEqual() {
+    list<int> l;
+
+    l.emplace_front(2);
+    l.emplace_back(1);
+    l.emplace_front(4);
+    l.emplace_back(3);
+
     list<int> copiedList = l;
-    std::cout << "copiedList = {";
+    std::cout << "copiedList before deleting the original list = {";
     for (size_t i = 0; i < copiedList.size(); i++) {
         std::cout << copiedList[i] << ", ";
     } std::cout << "}" << std::endl;
 
-    return 0;
+    l.clear();
+    std::cout << "copiedList after deleting the original list = {";
+    for (size_t i = 0; i < copiedList.size(); i++) {
+        std::cout << copiedList[i] << ", ";
+    } std::cout << "}" << std::endl;
 }

@@ -60,7 +60,6 @@ inline list<T> &list<T>::operator=(const list &other) {
         clear();
     }
     
-
     for (unsigned int i = 0; i < other.size(); i++) {
         emplace_back(other[i]);
     }
