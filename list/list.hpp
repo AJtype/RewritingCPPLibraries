@@ -135,6 +135,36 @@ inline T list<T>::pop_front() {
 }
 
 template <typename T>
+inline T list<T>::erase(unsigned int pos) {
+    node* itr = head;
+
+    if (0 > pos || pos > length || empty()) {
+        throw std::out_of_range("tried to erase out of range of list");
+    }
+    
+    if (0 == pos) { // erase beginning
+        return pop_front();
+    } if (pos == length-1) { // erase end
+        return pop_back();
+    }
+
+    // get to element
+    for (size_t i = 0; i < pos; i++) {
+        itr = itr->next;
+    }
+    T val = itr->value;
+    
+    // deal with pointers
+    itr->prev->next = itr->next;
+    itr->next->prev = itr->prev;
+
+    delete(itr);
+    length--;
+    
+    return val;
+}
+
+template <typename T>
 inline void list<T>::emplace_front(const T &value) {
     node* prevHead = head;
 
