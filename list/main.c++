@@ -3,6 +3,7 @@
 
 void print_list(list<int>l); // TODO: make const
 void check_copyConstructor();
+void check_operatorEqual();
 void check_clear();
 void check_unique();
 void check_erase();
@@ -43,11 +44,13 @@ int main() {
 
     // check_copyConstructor();
 
+    check_operatorEqual();
+
     // check_clear();
 
     // check_unique();
     
-    check_erase();
+    // check_erase();
 
     return 0;
 }
@@ -59,10 +62,10 @@ void print_list(list<int> l) {
     } std::cout << "}" << std::endl;
 }
 
-void check_copyConstructor() { // TODO: bug
+void check_copyConstructor() {
     list<int> l;
 
-    std::cout << "\n---testing = func---" << std::endl;
+    std::cout << "\n---testing copy constructor func---" << std::endl;
 
     l.emplace_front(2);
     l.emplace_back(1);
@@ -74,8 +77,40 @@ void check_copyConstructor() { // TODO: bug
     print_list(copiedList);
 
     l.clear();
-    // copiedList = copiedList; // TODO: test
     std::cout << "copiedList after deleting the original list = ";
+    print_list(copiedList);
+
+    std::cout << "---end of copy constructor test---\n" << std::endl;
+}
+
+void check_operatorEqual() {
+    list<int> l;
+    list<int> copiedList;
+
+    std::cout << "\n---testing = func---" << std::endl;
+
+    l.emplace_front(2);
+    l.emplace_back(1);
+    l.emplace_front(4);
+    l.emplace_back(3);
+
+    copiedList = l;
+    std::cout << "copiedList before deleting the original list = ";
+    print_list(copiedList);
+
+    l.clear();
+    std::cout << "copiedList after deleting the original list = ";
+    print_list(copiedList);
+
+    l.emplace_back(1);
+    l.emplace_front(4);
+
+    copiedList = l;
+    std::cout << "copied a shorted list = ";
+    print_list(copiedList);
+
+    copiedList = copiedList;
+    std::cout << "copied the list into itself = ";
     print_list(copiedList);
 
     std::cout << "---end of = test---\n" << std::endl;

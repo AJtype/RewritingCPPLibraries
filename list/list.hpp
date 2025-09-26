@@ -20,8 +20,8 @@ public:
     list();
     list(const list&);
     list(list&&) = default; // TODO: untested
-    ~list(); // TODO: remove all the allocated memory
-    list<T>& operator=(const list& other); // TODO: bug, if you change the original list the copied list fucks up
+    ~list();
+    list<T>& operator=(const list& other);
 
     // getter
     unsigned int size();
@@ -68,8 +68,8 @@ inline list<T>::~list() {
 
 template <typename T>
 inline list<T> &list<T>::operator=(const list &other)
-{                                     // untested
-    if (this == &other) return *this; // TODO: test without
+{
+    if (this == &other) return *this;
 
     if (!empty()) clear();
     
