@@ -138,7 +138,7 @@ template <typename T>
 inline T list<T>::erase(unsigned int pos) {
     node* itr = head;
 
-    if (0 > pos || pos > length || empty()) {
+    if (pos >= length) {
         throw std::out_of_range("tried to erase out of range of list");
     }
     
@@ -158,7 +158,7 @@ inline T list<T>::erase(unsigned int pos) {
     itr->prev->next = itr->next;
     itr->next->prev = itr->prev;
 
-    delete(itr);
+    delete itr;
     length--;
     
     return val;
