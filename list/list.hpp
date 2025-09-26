@@ -18,9 +18,9 @@ private:
 public:
     // constructor declarations
     list();
-    list(const list&); // TODO: untested
+    list(const list&);
     list(list&&) = default; // TODO: untested
-    ~list() = default; // TODO: remove all the allocated memory
+    ~list(); // TODO: remove all the allocated memory
     list<T>& operator=(const list& other); // TODO: bug, if you change the original list the copied list fucks up
 
     // getter
@@ -53,6 +53,7 @@ template <typename T>
 inline list<T>::list() :
     head(nullptr), end(nullptr), length(0) {}
 
+// copy constructor
 template <typename T>
 list<T>::list(const list& other) : head(nullptr), end(nullptr), length(0) {
     for (node* curr = other.head; curr; curr = curr->next) {
@@ -61,33 +62,36 @@ list<T>::list(const list& other) : head(nullptr), end(nullptr), length(0) {
 }
 
 template <typename T>
-inline list<T> &list<T>::operator=(const list& other) { // untested
+inline list<T>::~list() {
+    clear();
+}
+
+template <typename T>
+inline list<T> &list<T>::operator=(const list &other)
+{                                     // untested
     if (this == &other) return *this; // TODO: test without
 
     if (!empty()) clear();
     
-    for (unsigned int i = 0; i < other.size(); i++) {
-        emplace_back(other[i]);
+    for (node* curr = other.head; curr; curr = curr->next) {
+        emplace_back(curr->value);
     }
     
     return *this;
 }
 
 template <typename T>
-inline unsigned int list<T>::size()
-{
+inline unsigned int list<T>::size() {
     return length;
 }
 
 template <typename T>
-inline T& list<T>::front()
-{
+inline T& list<T>::front() {
     return head->value;
 }
 
 template <typename T>
-inline T& list<T>::back()
-{
+inline T& list<T>::back() {
     return end->value;
 }
 
