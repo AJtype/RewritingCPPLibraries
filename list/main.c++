@@ -2,7 +2,7 @@
 #include <iostream>
 
 void print_list(list<int>l); // TODO: make const
-void check_operatorEqual();
+void check_copyConstructor();
 void check_clear();
 void check_unique();
 
@@ -40,11 +40,11 @@ int main() {
     //     std::cout << l[i] << ", ";
     // } std::cout << "}" << std::endl;
 
-    // check_operatorEqual();
+    check_copyConstructor();
 
     // check_clear();
 
-    check_unique();
+    // check_unique();
 
     return 0;
 }
@@ -56,7 +56,7 @@ void print_list(list<int> l) {
     } std::cout << "}" << std::endl;
 }
 
-void check_operatorEqual() { // TODO: bug
+void check_copyConstructor() { // TODO: bug
     list<int> l;
 
     std::cout << "\n---testing = func---" << std::endl;
@@ -71,6 +71,7 @@ void check_operatorEqual() { // TODO: bug
     print_list(copiedList);
 
     l.clear();
+    // copiedList = copiedList; // TODO: test
     std::cout << "copiedList after deleting the original list = ";
     print_list(copiedList);
 

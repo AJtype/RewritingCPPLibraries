@@ -18,7 +18,7 @@ private:
 public:
     // constructor declarations
     list();
-    list(const list&) = default; // TODO: untested
+    list(const list&); // TODO: untested
     list(list&&) = default; // TODO: untested
     ~list() = default; // TODO: remove all the allocated memory
     list<T>& operator=(const list& other); // TODO: bug, if you change the original list the copied list fucks up
@@ -54,17 +54,23 @@ inline list<T>::list() :
     head(nullptr), end(nullptr), length(0) {}
 
 template <typename T>
-inline list<T> &list<T>::operator=(const list &other) {
-    if (!empty())
-    {
-        clear();
+list<T>::list(const list& other) : head(nullptr), end(nullptr), length(0) {
+    for (node* curr = other.head; curr; curr = curr->next) {
+        emplace_back(curr->value);
     }
+}
+
+template <typename T>
+inline list<T> &list<T>::operator=(const list& other) { // untested
+    if (this == &other) return *this; // TODO: test without
+
+    if (!empty()) clear();
     
     for (unsigned int i = 0; i < other.size(); i++) {
         emplace_back(other[i]);
     }
     
-    return this;
+    return *this;
 }
 
 template <typename T>
