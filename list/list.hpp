@@ -41,10 +41,10 @@ public:
     bool empty();
     void swap(list& other) noexcept;
     void clear();
+    void sort();
     void merge(const list& other);
     void reverse();
     void unique();
-    void sort();
 };
 
 // constructors
@@ -230,6 +230,38 @@ inline void list<T>::clear() {
 }
 
 template <typename T>
+inline void list<T>::sort() { // TODO: untested, need to finish merge first
+    if (length == 1)
+        return;
+
+    // construct left list and right list
+    list<T> L, R;
+    unsigned int i = 0;
+
+    // set up left list
+    L.head = head;
+    node* itr = head;
+    for (i = 1; i < length/2; i++) {
+        itr = itr->next;
+    } L.length = i;
+    L.end = itr;
+
+    // set up right list
+    R.head = itr->next;
+    L.end->next = nullptr;
+    R.end = end;
+    R.length = length - L.length;
+    
+    /*
+    L.sort();
+    R.sort();
+
+    L.merge(R);
+    merge(L); // TODO: remove L, replace with this
+    */
+}
+
+template <typename T>
 inline void list<T>::merge(const list& other) {
     // TODO
 }
@@ -260,9 +292,4 @@ inline void list<T>::unique() {
             itr = itr->next;
         }
     }
-}
-
-template <typename T>
-inline void list<T>::sort() {
-    // TODO
 }
