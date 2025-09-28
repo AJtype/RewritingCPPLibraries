@@ -1,6 +1,11 @@
 #pragma once
 #include <iostream>
 
+template<typename T> class list;
+
+template<typename T>
+void print_list(list<T> l); // TODO: make const
+
 template<typename T>
 class list{ // doubly linked list
 private:
@@ -292,4 +297,12 @@ inline void list<T>::unique() {
             itr = itr->next;
         }
     }
+}
+
+template <typename T>
+inline void print_list(list<T> l) {
+    std::cout << "{";
+    for (size_t i = 0; i < l.size(); i++) {
+        std::cout << l[i] << ", ";
+    } std::cout << "}" << std::endl;
 }

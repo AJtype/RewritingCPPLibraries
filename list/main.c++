@@ -1,8 +1,6 @@
 #include "list.hpp"
 #include <iostream>
 
-void print_list(list<int>l); // TODO: make const
-
 // constructor tests
 void check_copyConstructor();
 void check_operatorEqual();
@@ -69,13 +67,6 @@ int main() {
     // check_merge(); // TODO
 
     return 0;
-}
-
-void print_list(list<int> l) {
-    std::cout << "{";
-    for (size_t i = 0; i < l.size(); i++) {
-        std::cout << l[i] << ", ";
-    } std::cout << "}" << std::endl;
 }
 
 void check_copyConstructor() {
@@ -319,23 +310,24 @@ void check_sort() {
 
     list1.emplace_front(0);
     list1.emplace_back(49);
+    list1.emplace_back(101);
 
     std::cout << "added 0 at the beginning and 49 at the end list1 = "; // list should still be sorted
-    print_list(list1); // {0, 1, 5, 11, 31, 49}
+    print_list(list1); // {0, 1, 5, 11, 31, 49, 101}
 
     list1.sort();
     std::cout << "post-sort list1 = "; // nothing should happen
-    print_list(list1); // {0, 1, 5, 11, 31, 49}
+    print_list(list1); // {0, 1, 5, 11, 31, 49, 101}
 
     list1.emplace_front(5);
     list1.emplace_back(38);
 
     std::cout << "added 5 at the beginning and 38 at the end list1 = "; // list should still be sorted
-    print_list(list1); // {5, 0, 1, 5, 11, 31, 49, 38}
+    print_list(list1); // {5, 0, 1, 5, 11, 31, 49, 101, 38}
 
     list1.sort();
     std::cout << "post-sort list1 = "; // sorted list after adding to it, also has the same element twice
-    print_list(list1); // {0, 1, 5, 5, 11, 31, 38, 49}
+    print_list(list1); // {0, 1, 5, 5, 11, 31, 38, 49, 101}
 
     std::cout << "---end of merge test---\n" << std::endl;
 }
