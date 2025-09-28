@@ -41,7 +41,7 @@ public:
     bool empty();
     void swap(list& other) noexcept;
     void clear();
-    void merge();
+    void merge(const list& other);
     void reverse();
     void unique();
     void sort();
@@ -216,7 +216,7 @@ inline bool list<T>::empty() {
 }
 
 template <typename T>
-inline void list<T>::swap(list &other) noexcept {
+inline void list<T>::swap(list& other) noexcept {
     std::swap(head, other.head);
     std::swap(end, other.end);
     std::swap(length, other.length);
@@ -227,6 +227,11 @@ inline void list<T>::clear() {
     while (length != 0) {
         pop_front();
     }
+}
+
+template <typename T>
+inline void list<T>::merge(const list& other) {
+    // TODO
 }
 
 template <typename T>
@@ -255,4 +260,9 @@ inline void list<T>::unique() {
             itr = itr->next;
         }
     }
+}
+
+template <typename T>
+inline void list<T>::sort() {
+    // TODO
 }

@@ -2,12 +2,20 @@
 #include <iostream>
 
 void print_list(list<int>l); // TODO: make const
+
+// constructor tests
 void check_copyConstructor();
 void check_operatorEqual();
+
+// getter setter tests
 void check_clear();
-void check_unique();
 void check_erase();
+void check_unique();
 void check_swap();
+
+// funcs
+void check_sort();
+void check_merge();
 
 int main() {
     // list<int> l;
@@ -53,7 +61,11 @@ int main() {
     
     // check_erase();
 
-    check_swap();
+    // check_swap();
+
+    check_sort();
+    
+    // check_merge(); // TODO
 
     return 0;
 }
@@ -269,7 +281,7 @@ void check_swap() {
     print_list(list1);
     std::cout << "post-swapped list2 = ";
     print_list(list2);
-//
+
     list1.emplace_front(-1);
     list1.emplace_back(5);
     list2.emplace_front(2);
@@ -285,4 +297,82 @@ void check_swap() {
     print_list(list1);
 
     std::cout << "---end of swap test---\n" << std::endl;
+}
+
+void check_sort() {
+    list<int> list1;
+
+    std::cout << "\n---testing sort func---" << std::endl;
+
+    list1.emplace_back(11);
+    list1.emplace_back(1);
+    list1.emplace_back(31);
+    list1.emplace_back(5);
+
+    std::cout << "pre-sorted list1 = ";
+    print_list(list1); // {11, 1, 31, 5}
+
+    list1.sort();
+    std::cout << "post-sort list1 = "; // should have all elements sorted
+    print_list(list1); // {1, 5, 11, 31}
+
+    list1.emplace_front(0);
+    list1.emplace_back(49);
+
+    std::cout << "added 0 at the beginning and 49 at the end list1 = "; // list should still be sorted
+    print_list(list1); // {0, 1, 5, 11, 31, 49}
+
+    list1.sort();
+    std::cout << "post-sort list1 = "; // nothing should happen
+    print_list(list1); // {0, 1, 5, 11, 31, 49}
+
+    list1.emplace_front(5);
+    list1.emplace_back(38);
+
+    std::cout << "added 5 at the beginning and 38 at the end list1 = "; // list should still be sorted
+    print_list(list1); // {5, 0, 1, 5, 11, 31, 49, 38}
+
+    list1.sort();
+    std::cout << "post-sort list1 = "; // sorted list after adding to it, also has the same element twice
+    print_list(list1); // {0, 1, 5, 5, 11, 31, 38, 49}
+
+    std::cout << "---end of merge test---\n" << std::endl;
+}
+
+void check_merge() {
+    list<int> list1;
+    list<int> list2;
+    
+    std::cout << "\n---testing merge func---" << std::endl;
+
+    list1.emplace_back(1);
+    list1.emplace_back(5);
+    list1.emplace_back(11);
+    list1.emplace_back(31);
+
+    list2.emplace_back(10);
+    list2.emplace_back(20);
+    list2.emplace_back(30);
+
+    // both lists must be sorted
+    list1.sort();
+    list2.sort();
+
+    std::cout << "pre-merged list1 = ";
+    print_list(list1);
+    std::cout << "pre-merged list2 = ";
+    print_list(list2);
+    
+    list1.merge(list2);
+    std::cout << "post-merged list1 = "; // should have all elements sorted
+    print_list(list1); // {1, 5, 10, 11, 20, 30, 31}
+    std::cout << "post-merged list2 = "; // should be empty
+    print_list(list2); // {}
+
+    // check swap with self
+    list1.swap(list1);
+    std::cout << "swapped with self list1 = "; // shouldn't change
+    print_list(list1); // {1, 5, 10, 11, 20, 30, 31}
+
+    std::cout << "---end of merge test---\n" << std::endl;
 }
