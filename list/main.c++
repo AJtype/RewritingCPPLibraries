@@ -61,10 +61,9 @@ int main() {
 
     // check_swap();
 
-    check_sort();
-
+    // check_sort(); // TODO
     
-    // check_merge(); // TODO
+    check_merge(); // TODO
 
     return 0;
 }
@@ -338,34 +337,65 @@ void check_merge() {
     
     std::cout << "\n---testing merge func---" << std::endl;
 
-    list1.emplace_back(1);
-    list1.emplace_back(5);
-    list1.emplace_back(11);
-    list1.emplace_back(31);
-
     list2.emplace_back(10);
     list2.emplace_back(20);
     list2.emplace_back(30);
 
     // both lists must be sorted
-    list1.sort();
-    list2.sort();
+    // list1.sort();
+    // list2.sort();
 
     std::cout << "pre-merged list1 = ";
     print_list(list1);
     std::cout << "pre-merged list2 = ";
     print_list(list2);
     
+    std::cout << "\nmerged empty list with sorted list" << std::endl;
     list1.merge(list2);
     std::cout << "post-merged list1 = "; // should have all elements sorted
-    print_list(list1); // {1, 5, 10, 11, 20, 30, 31}
+    print_list(list1); // {10, 20, 30}
     std::cout << "post-merged list2 = "; // should be empty
     print_list(list2); // {}
 
-    // check swap with self
-    list1.swap(list1);
-    std::cout << "swapped with self list1 = "; // shouldn't change
-    print_list(list1); // {1, 5, 10, 11, 20, 30, 31}
+    std::cout << "\nmerged list with empty list" << std::endl;
+    list1.merge(list2);
+    std::cout << "post-merged list1 = "; // should have all elements sorted
+    print_list(list1); // {10, 20, 30}
+    std::cout << "post-merged list2 = "; // should be empty
+    print_list(list2); // {}
+
+    // list2.emplace_back(5);
+    // list2.emplace_back(6);
+    // list2.emplace_back(10);
+
+    // std::cout << "\nmerged list with low list" << std::endl;
+    // list1.merge(list2);
+    // std::cout << "post-merged list1 = "; // should have all elements sorted
+    // print_list(list1); // {5, 6, 7, 10, 20, 30}
+    // std::cout << "post-merged list2 = "; // should be empty
+    // print_list(list2); // {}
+
+    list2.emplace_back(30);
+    list2.emplace_back(32);
+    list2.emplace_back(33);
+
+    std::cout << "\nmerged list with high list" << std::endl;
+    list1.merge(list2);
+    std::cout << "post-merged list1 = "; // should have all elements sorted
+    print_list(list1); // {5, 6, 7, 10, 20, 30, 30, 32, 33}
+    std::cout << "post-merged list2 = "; // should be empty
+    print_list(list2); // {}
+
+    list2.emplace_back(20);
+    list2.emplace_back(25);
+    list2.emplace_back(31);
+
+    std::cout << "\nmerged list with mid list" << std::endl;
+    list1.merge(list2);
+    std::cout << "post-merged list1 = "; // should have all elements sorted
+    print_list(list1); // {5, 6, 7, 10, 20, 30, 30, 32, 33}
+    std::cout << "post-merged list2 = "; // should be empty
+    print_list(list2); // {}
 
     std::cout << "---end of merge test---\n" << std::endl;
 }
