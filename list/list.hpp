@@ -216,6 +216,11 @@ inline bool list<T>::empty() {
 }
 
 template <typename T>
+inline void list<T>::swap(list &other) noexcept {
+    
+}
+
+template <typename T>
 inline void list<T>::clear() {    
     while (length != 0) {
         pop_front();

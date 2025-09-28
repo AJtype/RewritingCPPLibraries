@@ -7,6 +7,7 @@ void check_operatorEqual();
 void check_clear();
 void check_unique();
 void check_erase();
+void check_swap();
 
 int main() {
     // list<int> l;
@@ -44,13 +45,15 @@ int main() {
 
     // check_copyConstructor();
 
-    check_operatorEqual();
+    // check_operatorEqual();
 
     // check_clear();
 
     // check_unique();
     
     // check_erase();
+
+    check_swap();
 
     return 0;
 }
@@ -222,4 +225,64 @@ void check_erase() {
     print_list(l);
 
     std::cout << "---end of erase test---\n" << std::endl;
+}
+
+void check_swap() {
+    list<int> list1;
+    list<int> list2;
+    
+    std::cout << "\n---testing swap func---" << std::endl;
+
+    list1.emplace_back(1);
+    list1.emplace_back(2);
+    list1.emplace_back(3);
+
+    list2.emplace_back(4);
+    list2.emplace_back(5);
+    list2.emplace_back(6);
+
+    std::cout << "pre-swapped list1 = ";
+    print_list(list1);
+    std::cout << "pre-swapped list2 = ";
+    print_list(list2);
+    
+    list1.swap(list2);
+
+    std::cout << "post-swapped list1 = ";
+    print_list(list1);
+    std::cout << "post-swapped list2 = ";
+    print_list(list2);
+
+    list1.emplace_front(3);
+    list1.emplace_back(7);
+    list2.emplace_front(0);
+    list2.emplace_back(4);
+
+    std::cout << "added 3 at beginning and 7 at the end list1 = ";
+    print_list(list1);
+    std::cout << "added 0 at beginning and 4 at the end list2 = ";
+    print_list(list2);
+
+    list2.swap(list1);
+
+    std::cout << "post-swapped list1 = ";
+    print_list(list1);
+    std::cout << "post-swapped list2 = ";
+    print_list(list2);
+//
+    list1.emplace_front(-1);
+    list1.emplace_back(5);
+    list2.emplace_front(2);
+    list2.emplace_back(8);
+
+    std::cout << "added -1 at beginning and 5 at the end list1 = ";
+    print_list(list1);
+    std::cout << "added 2 at beginning and 8 at the end list1 = ";
+    print_list(list2);
+
+    list1.swap(list1);
+    std::cout << "swapped with self list1 = ";
+    print_list(list1);
+
+    std::cout << "---end of swap test---\n" << std::endl;
 }
