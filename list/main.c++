@@ -61,9 +61,9 @@ int main() {
 
     // check_swap();
 
-    // check_sort(); // TODO
+    check_sort(); // TODO
     
-    check_merge(); // TODO
+    // check_merge();
 
     return 0;
 }

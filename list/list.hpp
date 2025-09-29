@@ -257,10 +257,12 @@ inline void list<T>::sort() { // TODO: untested, need to finish merge first
     R.end = end;
     R.length = length - L.length;
     
-    /*
+    print_list(L);
+    print_list(R);
+
     L.sort();
     R.sort();
-
+/*
     L.merge(R);
     merge(L); // TODO: remove L, replace with this
     */
