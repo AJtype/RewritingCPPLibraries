@@ -236,7 +236,7 @@ inline void list<T>::clear() {
 
 template <typename T>
 inline void list<T>::sort() { // TODO: untested, need to finish merge first
-    if (length == 1)
+    if (length <= 1)
         return;
 
     // construct left list and right list
@@ -267,32 +267,32 @@ inline void list<T>::sort() { // TODO: untested, need to finish merge first
 }
 
 template <typename T>
-inline void list<T>::merge(list& other) {
-    node* itr = head;
-    node* temp;
+inline void list<T>::merge(list& other) {    
     if (empty()) {
         swap(other);
         return;
     }
 
+    node* itr = head;
+    node* temp;
+
     while (other.head) { // while other isn't empty
-        if (!itr) {
+        if (!itr) { // got to end of list
             itr = end;
             end = other.end;
             itr->next = other.head;
             itr->next->prev = itr;
             other.head = nullptr; 
-        } else if (other.head->value < itr->value) { // TODO: doesn't work
-            if (head = itr) {
-                head = other.head; // add new head first
-                other.head = other.head->next; // forward head on other list
-                other.head->prev = nullptr;
-                head->next = itr; // integrate new head to list
+        } else if (other.head->value < itr->value) {
+            if (head == itr) {
+                head = other.head;
+                other.head = other.head->next;
+                head->next = itr;
+                itr->prev = head;
             } else {
                 // disconnect other head from other list
                 temp = other.head;
                 other.head = other.head->next;
-                other.head->prev = nullptr;
 
                 // integrate node into this list
                 itr->prev->next = temp;
@@ -300,7 +300,7 @@ inline void list<T>::merge(list& other) {
                 temp->next = itr;
                 itr->prev = temp;
             }
-        } else { // TODO: doesn't work
+        } else {
             itr = itr->next;
         }
     }
