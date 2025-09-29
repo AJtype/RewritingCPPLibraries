@@ -235,37 +235,39 @@ inline void list<T>::clear() {
 }
 
 template <typename T>
-inline void list<T>::sort() { // TODO: untested, need to finish merge first
+inline void list<T>::sort() { // TODO: end is incorrect
     if (length <= 1)
         return;
 
     // construct left list and right list
-    list<T> L, R;
+    list<T> R;
     unsigned int i = 0;
 
     // set up left list
-    L.head = head;
     node* itr = head;
     for (i = 1; i < length/2; i++) {
         itr = itr->next;
-    } L.length = i;
-    L.end = itr;
+    }
+    R.end = end;
+    end = itr;
 
     // set up right list
     R.head = itr->next;
-    L.end->next = nullptr;
-    R.end = end;
-    R.length = length - L.length;
+    end->next = nullptr;
+    R.length = length - i;
+    length = i;
     
-    print_list(L);
-    print_list(R);
+    // std::cout << "L = ";
+    // print_list(*this);
+    // std::cout << "length = " << length << std::endl;
+    // std::cout << "R = ";
+    // print_list(R);
+    // std::cout << "length = " << R.length << std::endl;
 
-    L.sort();
+    sort();
     R.sort();
-/*
-    L.merge(R);
-    merge(L); // TODO: remove L, replace with this
-    */
+
+    merge(R);
 }
 
 template <typename T>
@@ -307,6 +309,7 @@ inline void list<T>::merge(list& other) {
         }
     }
 
+    length += other.length;
     // clear other list
     other.length = 0;
     other.end = nullptr;

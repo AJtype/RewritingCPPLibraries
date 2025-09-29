@@ -61,7 +61,7 @@ int main() {
 
     // check_swap();
 
-    check_sort(); // TODO
+    check_sort();
     
     // check_merge();
 
@@ -302,31 +302,35 @@ void check_sort() {
 
     std::cout << "pre-sorted list1 = ";
     print_list(list1); // {11, 1, 31, 5}
+    std::cout << "end = " << list1.back()  << "\tlen = " << list1.size() << std::endl;
 
     list1.sort();
-    std::cout << "post-sort list1 = "; // should have all elements sorted
+    std::cout << "\npost-sort list1 = "; // should have all elements sorted
     print_list(list1); // {1, 5, 11, 31}
+    std::cout << "end = " << list1.back()  << "\tlen = " << list1.size()  << std::endl;
 
     list1.emplace_front(0);
     list1.emplace_back(49);
     list1.emplace_back(101);
 
-    std::cout << "added 0 at the beginning and 49 at the end list1 = "; // list should still be sorted
+    std::cout << "\nadded 0 at the beginning and 49 and 101 at the end list1 = "; // list should still be sorted
     print_list(list1); // {0, 1, 5, 11, 31, 49, 101}
 
     list1.sort();
     std::cout << "post-sort list1 = "; // nothing should happen
     print_list(list1); // {0, 1, 5, 11, 31, 49, 101}
+    std::cout << "end = " << list1.back() << "\tlen = " << list1.size() << std::endl;
 
     list1.emplace_front(5);
     list1.emplace_back(38);
 
-    std::cout << "added 5 at the beginning and 38 at the end list1 = "; // list should still be sorted
+    std::cout << "\nadded 5 at the beginning and 38 at the end list1 = "; // list should still be sorted
     print_list(list1); // {5, 0, 1, 5, 11, 31, 49, 101, 38}
 
     list1.sort();
     std::cout << "post-sort list1 = "; // sorted list after adding to it, also has the same element twice
     print_list(list1); // {0, 1, 5, 5, 11, 31, 38, 49, 101}
+    std::cout << "end = " << list1.back() << "\tlen = " << list1.size() << std::endl;
 
     std::cout << "---end of merge test---\n" << std::endl;
 }
@@ -346,39 +350,42 @@ void check_merge() {
     // list2.sort();
 
     std::cout << "pre-merged list1 = ";
-    print_list(list1);
+    print_list(list1); // {}
+    std::cout << "len = " << list1.size() << std::endl;
     std::cout << "pre-merged list2 = ";
-    print_list(list2);
+    print_list(list2); // {10, 20, 30}
+    std::cout << "end = " << list2.back() << "\tlen = " << list2.size() << std::endl;
     
     std::cout << "\nmerged empty list with sorted list" << std::endl;
-    list1.merge(list2);
+    list1.merge(list2); 
     std::cout << "post-merged list1 = "; // should have all elements sorted
     print_list(list1); // {10, 20, 30}
+    std::cout << "end = " << list1.back() << "\tlen = " << list1.size() << std::endl;
     std::cout << "post-merged list2 = "; // should be empty
     print_list(list2); // {}
+    std::cout << "len = " << list2.size() << std::endl;
 
     std::cout << "\nmerged list with empty list" << std::endl;
     list1.merge(list2);
     std::cout << "post-merged list1 = "; // should have all elements sorted
     print_list(list1); // {10, 20, 30}
+    std::cout << "end = " << list1.back() << "\tlen = " << list1.size() << std::endl;
     std::cout << "post-merged list2 = "; // should be empty
     print_list(list2); // {}
+    std::cout << "len = " << list2.size() << std::endl;
 
     list2.emplace_back(5);
     list2.emplace_back(6);
     list2.emplace_back(10);
 
-    std::cout << "pre-merged list1 = "; // should have all elements sorted
-    print_list(list1); // {5, 6, 7, 10, 20, 30}
-    std::cout << "pre-merged list2 = "; // should be empty
-    print_list(list2); // {}
-
     std::cout << "\nmerged list with low list" << std::endl;
     list1.merge(list2);
     std::cout << "post-merged list1 = "; // should have all elements sorted
     print_list(list1); // {5, 6, 7, 10, 20, 30}
+    std::cout << "end = " << list1.back() << "\tlen = " << list1.size() << std::endl;
     std::cout << "post-merged list2 = "; // should be empty
     print_list(list2); // {}
+    std::cout << "len = " << list2.size() << std::endl;
 
     list2.emplace_back(30);
     list2.emplace_back(32);
@@ -388,8 +395,10 @@ void check_merge() {
     list1.merge(list2);
     std::cout << "post-merged list1 = "; // should have all elements sorted
     print_list(list1); // {5, 6, 7, 10, 20, 30, 30, 32, 33}
+    std::cout << "end = " << list1.back() << "\tlen = " << list1.size() << std::endl;
     std::cout << "post-merged list2 = "; // should be empty
     print_list(list2); // {}
+    std::cout << "len = " << list2.size() << std::endl;
 
     list2.emplace_back(20);
     list2.emplace_back(25);
@@ -399,8 +408,10 @@ void check_merge() {
     list1.merge(list2);
     std::cout << "post-merged list1 = "; // should have all elements sorted
     print_list(list1); // {5, 6, 7, 10, 20, 20, 25, 30, 30, 31, 32, 33}
+    std::cout << "end = " << list1.back() << "\tlen = " << list1.size() << std::endl;
     std::cout << "post-merged list2 = "; // should be empty
     print_list(list2); // {}
+    std::cout << "len = " << list2.size() << std::endl;
 
     std::cout << "---end of merge test---\n" << std::endl;
 }
