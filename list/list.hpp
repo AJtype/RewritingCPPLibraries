@@ -9,8 +9,7 @@ void print_list(list<T> l); // TODO: make const
 template<typename T>
 class list{ // doubly linked list
 private:
-    struct node
-    {
+    struct node {
         T value;
         node* next;
         node* prev;
@@ -101,7 +100,10 @@ inline T& list<T>::back() {
 }
 
 template <typename T>
-inline T list<T>::pop_back() {
+inline T list<T>::pop_back() { // TODO: doesnt have a check for empty list
+    if (empty())
+        throw std::out_of_range("pop_back() called on an empty list");
+
     node* popped = end;
     T val = popped->value;
 
