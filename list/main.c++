@@ -61,7 +61,7 @@ int main() {
 
     // check_swap();
 
-    // check_sort();
+    check_sort();
     
     // check_merge();
 

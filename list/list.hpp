@@ -4,7 +4,7 @@
 template<typename T> class list;
 
 template<typename T>
-void print_list(list<T> l); // TODO: make const
+void print_list(const list<T>& l); // TODO: make const
 
 template<typename T>
 class list{ // doubly linked list
@@ -28,9 +28,11 @@ public:
     list<T>& operator=(const list& other);
 
     // getter
-    unsigned int size();
+    unsigned int size() const;
     T& front();
+    const T& front() const;
     T& back();
+    const T& back() const;
     T pop_back();
     T pop_front();
     T erase(unsigned int pos); // TODO: return iterator
@@ -40,9 +42,10 @@ public:
     void emplace_back(const T& value); // TODO: replace with Args&&... args
     // void insert() // TODO
     T& operator[](const int& pos);
+    const T& operator[](const int& pos) const;
 
     // funcs
-    bool empty();
+    bool empty() const;
     void swap(list& other) noexcept;
     void clear();
     void sort();
@@ -85,7 +88,7 @@ inline list<T> &list<T>::operator=(const list &other)
 }
 
 template <typename T>
-inline unsigned int list<T>::size() {
+inline unsigned int list<T>::size() const {
     return length;
 }
 
@@ -95,7 +98,17 @@ inline T& list<T>::front() {
 }
 
 template <typename T>
+inline const T &list<T>::front() const {
+    return head->value;
+}
+
+template <typename T>
 inline T& list<T>::back() {
+    return end->value;
+}
+
+template <typename T>
+inline const T &list<T>::back() const {
     return end->value;
 }
 
@@ -218,7 +231,18 @@ inline T& list<T>::operator[](const int &pos) {
 }
 
 template <typename T>
-inline bool list<T>::empty() {
+inline const T &list<T>::operator[](const int &pos) const {
+    node* curr = head;
+    
+    for (unsigned int i = 0; i < pos; i++) {
+        curr = curr->next;
+    }
+    
+    return curr->value;
+}
+
+template <typename T>
+inline bool list<T>::empty() const {
     return length == 0;
 }
 
@@ -346,7 +370,7 @@ inline void list<T>::unique() {
 }
 
 template <typename T>
-inline void print_list(list<T> l) {
+inline void print_list(const list<T>& l) {
     std::cout << "{";
     for (size_t i = 0; i < l.size(); i++) {
         std::cout << l[i] << ", ";
